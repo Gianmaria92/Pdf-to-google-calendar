@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# # -*- coding: utf-8 -*-
 """
 Created on Fri Feb  7 09:52:52 2025
 
@@ -54,7 +54,7 @@ def parse_shifts(a, s):
     return shifts
 
 def extract_row_from_pdf(pdf_path, search_string):
-    allowed_shifts = ["m", "p", "n", "mx", "nx", "Nu", "Mu", "Pu", "Mupu", "Du", "fe", "ffe"]
+    allowed_shifts = ["m", "p", "n", "mx", "nx", "Nu", "Mu", "Pu", "MuPu", "Du", "fe", "ffe"]
     months = ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", 
               "Novembre", "Dicembre"]
     
@@ -74,7 +74,7 @@ def extract_row_from_pdf(pdf_path, search_string):
                     if row and row[1] == search_string:  # Match first column
                         extracted_row = row[l[0]:]
                         shifts = parse_shifts(extracted_row, allowed_shifts)
-                        
+                
         d = dict(times=times, shifts=shifts)
         return  d
                     
@@ -117,8 +117,28 @@ def generate_ics_file(shift_dict, output_filename=None, year=2025):
             'start_time': '20:00',
             'duration': timedelta(hours=12)
         },
-        'Mupu': {
+        'nx': {
+            'start_time': '18:00',
+            'duration': timedelta(hours=6)
+        },
+        'MuPu': {
             'start_time': '08:00',
+            'duration': timedelta(hours=12)
+        },
+        'm': {
+            'start_time': '08:00',
+            'duration': timedelta(hours=6)
+        },
+        'mx': {
+            'start_time': '12:00',
+            'duration': timedelta(hours=6)
+        },
+        'p': {
+            'start_time': '14:00',
+            'duration': timedelta(hours=6)
+        },
+        'n': {
+            'start_time': '20:00',
             'duration': timedelta(hours=12)
         }
     }
@@ -211,6 +231,7 @@ shift_data = ts
 # Generate ICS file
 ics_content = generate_ics_file(shift_data, output_filename='shifts_calendar.ics')
 print("ICS file generated successfully!")
+            
             
             
             
