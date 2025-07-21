@@ -1,4 +1,4 @@
-# # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 Created on Fri Feb  7 09:52:52 2025
 
@@ -70,8 +70,9 @@ def extract_row_from_pdf(pdf_path, search_string):
                         print(f"Found month {row}")
                         time = row
                         times, l = parse_time(time, months)
-                        
+                    
                     if row and row[1] == search_string:  # Match first column
+                        row = ['' if item is None else item for item in row]
                         extracted_row = row[l[0]:]
                         shifts = parse_shifts(extracted_row, allowed_shifts)
                 
@@ -231,11 +232,5 @@ shift_data = ts
 # Generate ICS file
 ics_content = generate_ics_file(shift_data, output_filename='shifts_calendar.ics')
 print("ICS file generated successfully!")
-            
-            
-            
-            
-            
-            
             
             
