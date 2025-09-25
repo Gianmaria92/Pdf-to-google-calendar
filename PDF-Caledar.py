@@ -54,7 +54,7 @@ def parse_shifts(a, s):
     return shifts
 
 def extract_row_from_pdf(pdf_path, search_string):
-    allowed_shifts = ["m", "p", "n", "mx", "nx", "Nu", "Mu", "Pu", "MuPu", "Du", "fe", "ffe", "G4.", "G5."]
+    allowed_shifts = ["m", "p", "n", "mx", "nx", "Nu", "Mu", "Pu", "MuPu", "Du", "fe", "ffe", "G4.", "G4", "G5.", "G5", "N4", "co"]
     months = ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", 
               "Novembre", "Dicembre"]
     
@@ -146,7 +146,23 @@ def generate_ics_file(shift_dict, output_filename=None, year=2025):
             'start_time': '08:00',
             'duration': timedelta(hours=12)
         },
+        'G4': {
+            'start_time': '08:00',
+            'duration': timedelta(hours=12)
+        },
         'G5.': {
+            'start_time': '08:00',
+            'duration': timedelta(hours=12)
+        },
+        'G5': {
+            'start_time': '08:00',
+            'duration': timedelta(hours=12)
+        },
+        'N4': {
+            'start_time': '20:00',
+            'duration': timedelta(hours=12)
+        },
+        'co': {
             'start_time': '08:00',
             'duration': timedelta(hours=12)
         }
@@ -240,7 +256,10 @@ shift_data = ts
 # Generate ICS file
 ics_content = generate_ics_file(shift_data, output_filename='shifts_calendar.ics')
 print("ICS file generated successfully!")
-             
             
             
-
+            
+            
+            
+            
+            
