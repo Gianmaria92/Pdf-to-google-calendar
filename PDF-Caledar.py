@@ -11,6 +11,7 @@ from tkinter import filedialog
 import pdfplumber
 from datetime import datetime, timedelta
 import uuid
+import os
 
 def parse_time(a, t):
     common = [x for x in a if x in t]
@@ -103,7 +104,7 @@ def select_pdf_file():
     file_path = filedialog.askopenfilename(filetypes=[("PDF Files", "*.pdf")])
     return file_path
 
-def generate_ics_file(shift_dict, output_filename=None, year=2025):
+def generate_ics_file(shift_dict, output_filename=None, year=2026):
     """
     Generate an ICS file from a dictionary of times and shifts.
     Handles month rollover (e.g. 30, 31, 1, 2).
@@ -234,7 +235,8 @@ pdf_path = select_pdf_file()
 
 if pdf_path:
     search_string = "Farolfi"  # Inserisci il cognome corretto
-    
+    directory_path = os.path.dirname(pdf_path)
+    output_path = os.path.join(directory_path, 'shifts_calendar.ics')
     try:
         ts = extract_row_from_pdf(pdf_path, search_string)
         
