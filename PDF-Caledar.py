@@ -237,13 +237,14 @@ if pdf_path:
     search_string = "Farolfi"  # Inserisci il cognome corretto
     directory_path = os.path.dirname(pdf_path)
     output_path = os.path.join(directory_path, 'shifts_calendar.ics')
+    
     try:
         ts = extract_row_from_pdf(pdf_path, search_string)
         
         if ts:
             print(f"Dati estratti per {search_string}")
-            # Generate ICS file - Assicurati di passare l'anno corretto se non è il 2025
-            ics_content = generate_ics_file(ts, output_filename='shifts_calendar.ics', year=2025)
+            # Generate ICS file - 
+            ics_content = generate_ics_file(ts, output_filename=output_path, year=2026)
             print("ICS file generated successfully!")
         else:
             print(f"Nessuna riga trovata per: {search_string}")
