@@ -55,7 +55,7 @@ def parse_shifts(a, s):
     return shifts
 
 def extract_row_from_pdf(pdf_path, search_string):
-    allowed_shifts = ["m", "p", "n", "mx", "nx", "Nu", "Mu", "Pu", "MuPu", "Du", "fe", "ffe", "G4.", "G4", "G5.", "G5", "N4", "N5", "co", "m+", "p+", "n+", "af"]
+    allowed_shifts = ["m", "p", "n", "mx", "nx", "Nu", "Mu", "Pu", "MuPu", "Du", "fe", "ffe", "G4.", "G4", "G5.", "G5", "N4", "N5", "co", "m+", "p+", "n+", "af", "sno", "Gsp"]
     months = ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", 
               "Novembre", "Dicembre"]
     
@@ -132,7 +132,9 @@ def generate_ics_file(shift_dict, output_filename=None, year=2026):
         'm+': {'start_time': '08:00', 'duration': timedelta(hours=6)},
         'p+': {'start_time': '14:00', 'duration': timedelta(hours=6)},
         'n+': {'start_time': '20:00', 'duration': timedelta(hours=12)},
-        'af': {'start_time': '08:00', 'duration': timedelta(hours=12)}
+        'af': {'start_time': '08:00', 'duration': timedelta(hours=12)},
+        "Gsp": {'start_time': '08:00', 'duration': timedelta(hours=12)},
+        "sno": None
     }
     
     # Month mapping
